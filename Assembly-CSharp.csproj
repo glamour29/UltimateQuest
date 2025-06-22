@@ -61,8 +61,22 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.40f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Player.cs" />
-    <Compile Include="Assets\Example.cs" />
+    <Compile Include="Assets\Scripts\Player_Luot.cs" />
+    <Compile Include="Assets\Scripts\Player_RoiXuong.cs" />
+    <Compile Include="Assets\Scripts\Player_Nhay.cs" />
+    <Compile Include="Assets\Scripts\MayTrangThai.cs" />
+    <Compile Include="Assets\Scripts\TrangThaiThucThe.cs" />
+    <Compile Include="Assets\Scripts\Player_AnimationTrigger.cs" />
+    <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Player_DungYen.cs" />
+    <Compile Include="Assets\Scripts\Player_DiChuyen.cs" />
+    <Compile Include="Assets\Scripts\Player_NhayDanh.cs" />
+    <Compile Include="Assets\Scripts\Player_DanhThuong.cs" />
+    <Compile Include="Assets\Scripts\Player_TrenKhong.cs" />
+    <Compile Include="Assets\InputSystem\PlayerInputSet.cs" />
+    <Compile Include="Assets\Scripts\Player_TruotTuong.cs" />
+    <Compile Include="Assets\Scripts\Player_DungDat.cs" />
+    <Compile Include="Assets\Scripts\Player_NhayTuong.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

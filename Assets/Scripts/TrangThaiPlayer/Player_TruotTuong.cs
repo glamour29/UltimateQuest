@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Player_TruotTuong : TrangThaiThucThe
+public class Player_TruotTuong : TrangThaiPlayer
 {
     public Player_TruotTuong(Player player, StateMachine MayTrangThai, string TenBoolanim) : base(player, MayTrangThai, TenBoolanim)
     {

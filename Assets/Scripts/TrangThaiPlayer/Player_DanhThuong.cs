@@ -1,7 +1,7 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player_DanhThuong : TrangThaiThucThe
+public class Player_DanhThuong : TrangThaiPlayer
 {
 
     private float dongHoTocDoTanCong;

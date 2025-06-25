@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Player_NhayDanh : TrangThaiThucThe
+public class Player_NhayDanh : TrangThaiPlayer
 {
 
     private bool dangDungTrenDat;// Đánh dấu đã đứng trên đất hay chưa

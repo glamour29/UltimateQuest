@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_NhayTuong : TrangThaiThucThe
+public class Player_NhayTuong : TrangThaiPlayer
 {
     public Player_NhayTuong(Player player, StateMachine MayTrangThai, string TenBoolanim) : base(player, MayTrangThai, TenBoolanim)
     {

@@ -1,7 +1,7 @@
 ﻿using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player_DungDat : TrangThaiThucThe
+public class Player_DungDat : TrangThaiPlayer
 {
     public Player_DungDat(Player player, StateMachine MayTrangThai, string TenBoolanim) : base(player, MayTrangThai, TenBoolanim)
     {

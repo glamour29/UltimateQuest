@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Player_Luot : TrangThaiThucThe
+public class Player_Luot : TrangThaiPlayer
 {
     private float trongLucGoc;
     private float huongLuot;

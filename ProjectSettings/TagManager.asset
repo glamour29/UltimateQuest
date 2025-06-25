@@ -44,6 +44,9 @@ TagManager:
   - name: Dat
     uniqueID: 1078539191
     locked: 0
+  - name: Enemy
+    uniqueID: 890431531
+    locked: 0
   - name: Player
     uniqueID: 1735645377
     locked: 0

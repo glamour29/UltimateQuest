@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PhanDon",
+                    "type": "Button",
+                    "id": "8c9e6ea1-39a3-4201-a35a-44b99aa391f9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -128,6 +137,17 @@
                     "processors": "",
                     "groups": ";Keyboard & Mouse",
                     "action": "TanCong",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8e2d220c-1b52-4b01-823e-edffbff6e392",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PhanDon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

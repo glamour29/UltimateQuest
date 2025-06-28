@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 5a26068371b23984290a31b9bea9187f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - HieuUngTrungDon: {fileID: 2100000, guid: 9a1cd87386a7a2a4a9f6c5207d2c133e, type: 2}
+  - CanhBaoTanCong: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

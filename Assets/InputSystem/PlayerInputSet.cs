@@ -126,6 +126,15 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PhanDon"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c9e6ea1-39a3-4201-a35a-44b99aa391f9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,6 +225,17 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
                     ""action"": ""TanCong"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e2d220c-1b52-4b01-823e-edffbff6e392"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PhanDon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -234,6 +254,7 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_TanCong = m_Player.FindAction("TanCong", throwIfNotFound: true);
+        m_Player_PhanDon = m_Player.FindAction("PhanDon", throwIfNotFound: true);
     }
 
     ~@PlayerInputSet()
@@ -318,6 +339,7 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_TanCong;
+    private readonly InputAction m_Player_PhanDon;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -345,6 +367,10 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/TanCong".
         /// </summary>
         public InputAction @TanCong => m_Wrapper.m_Player_TanCong;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/PhanDon".
+        /// </summary>
+        public InputAction @PhanDon => m_Wrapper.m_Player_PhanDon;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -383,6 +409,9 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
             @TanCong.started += instance.OnTanCong;
             @TanCong.performed += instance.OnTanCong;
             @TanCong.canceled += instance.OnTanCong;
+            @PhanDon.started += instance.OnPhanDon;
+            @PhanDon.performed += instance.OnPhanDon;
+            @PhanDon.canceled += instance.OnPhanDon;
         }
 
         /// <summary>
@@ -406,6 +435,9 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
             @TanCong.started -= instance.OnTanCong;
             @TanCong.performed -= instance.OnTanCong;
             @TanCong.canceled -= instance.OnTanCong;
+            @PhanDon.started -= instance.OnPhanDon;
+            @PhanDon.performed -= instance.OnPhanDon;
+            @PhanDon.canceled -= instance.OnPhanDon;
         }
 
         /// <summary>
@@ -487,5 +519,12 @@ public partial class @PlayerInputSet: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTanCong(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PhanDon" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPhanDon(InputAction.CallbackContext context);
     }
 }

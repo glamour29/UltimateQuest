@@ -8,7 +8,7 @@ public abstract class TrangThaiThucThe
     protected Animator anim;
     protected Rigidbody2D rb;
 
-    protected float thoiGianTrangThai;
+    protected float tgianTrangThai;
     protected bool triggerDuocGoi;
 
     public TrangThaiThucThe(StateMachine mayTrangThai, string TenBoolanim)
@@ -26,7 +26,7 @@ public abstract class TrangThaiThucThe
     public virtual void Update()// Được gọi mỗi khung hình khi trạng thái đang hoạt động
 
     {
-        thoiGianTrangThai -= Time.deltaTime;
+        tgianTrangThai -= Time.deltaTime;
     }
 
     public virtual void Exit() // Được gọi khi trạng thái kết thúc hoặc chuyển sang trạng thái khác
@@ -35,7 +35,7 @@ public abstract class TrangThaiThucThe
         anim.SetBool(TenBoolanim, false);
     }
 
-    public void GoiAnimationTrigger()
+    public void AnimationTrigger()
     {
         triggerDuocGoi = true;
     }

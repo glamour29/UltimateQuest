@@ -16,7 +16,14 @@ public class TrangThaiEnemy : TrangThaiThucThe
     {
         base.Update();
 
+        if (Input.GetKeyDown(KeyCode.F))
+            mayTrangThai.thayDoiTrangThai(enemy.TanCong);
+
+        float heSoTocDoDanhNhau = enemy.tocDoDanhNhau / enemy.tocDoDiChuyen;
+
+        anim.SetFloat("heSoTocDoDanhNhau", heSoTocDoDanhNhau);
         anim.SetFloat("heSoTocDoDiChuyen", enemy.heSoTocDoDiChuyen);
+        anim.SetFloat("vtX", rb.linearVelocity.x);
     }
 
 }

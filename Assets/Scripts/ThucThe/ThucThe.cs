@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class ThucThe : MonoBehaviour
 {
+    public event Action KhiBiLat;
+
 
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
+    public ChiSo_ThucThe chiSo { get; private set; }
     protected StateMachine mayTrangThai;
 
 
@@ -23,8 +27,9 @@ public class ThucThe : MonoBehaviour
     public bool daChamDat { get; private set; }
     public bool daChamTuong { get; private set; }
 
-    private Coroutine luongDayLui;
     private bool biDayLui;
+    private Coroutine heSoDayLui;
+    private Coroutine coroutineLamCham;
 
     // Hàm Awake được Unity gọi đầu tiên khi GameObject được khởi tạo (trước Start)
     protected virtual void Awake()
@@ -32,6 +37,7 @@ public class ThucThe : MonoBehaviour
 
         anim = GetComponentInChildren<Animator>();
         rb = GetComponentInChildren<Rigidbody2D>();
+        chiSo=GetComponent<ChiSo_ThucThe>();
 
         // Khởi tạo máy trạng thái
         mayTrangThai = new StateMachine();
@@ -57,17 +63,28 @@ public class ThucThe : MonoBehaviour
 
     }
 
+    public virtual void lamChamThucThe (float tgian, float heSoLamCham )
+    {
+        if (coroutineLamCham != null)
+            StopCoroutine(coroutineLamCham);
 
+        coroutineLamCham = StartCoroutine(CoroutinelamChamThucThe(tgian, heSoLamCham));
+    }
+
+    protected virtual IEnumerator CoroutinelamChamThucThe(float tgian, float heSoLamCham)
+    {
+        yield return null;
+    }
 
 
     // Gọi hàm để bắt đầu hiệu ứng đẩy lùi
     public void NhanDaylui(Vector2 daylui, float tgian )
     {
         // Nếu đã có coroutine đẩy lùi đang chạy thì dừng lại
-        if (luongDayLui != null)
-            StopCoroutine(luongDayLui);
+        if (heSoDayLui != null)
+            StopCoroutine(heSoDayLui);
         // Bắt đầu coroutine mới để xử lý đẩy lùi
-        luongDayLui = StartCoroutine (CoroutineDayLui(daylui, tgian));
+        heSoDayLui = StartCoroutine (CoroutineDayLui(daylui, tgian));
     }
 
     // Coroutine xử lý hiệu ứng đẩy lùi trong một khoảng thời gian
@@ -117,7 +134,11 @@ public class ThucThe : MonoBehaviour
         quaySangPhai = !quaySangPhai;    // Đảo ngược trạng thái quay (nếu đang quay phải thì thành quay trái và ngược lại)
         huongQuay = huongQuay * -1;
 
+        KhiBiLat?.Invoke();
+
     }
+
+
 
     private void XuLyPhatHienVaCham()
 

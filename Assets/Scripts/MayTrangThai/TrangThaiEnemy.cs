@@ -10,6 +10,7 @@ public class TrangThaiEnemy : TrangThaiThucThe
 
         rb = enemy.rb;
         anim = enemy.anim;
+        chiSo = enemy.chiSo;
     }
 
     public override void Update()

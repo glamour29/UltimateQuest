@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: f8d075c4664bf2a4bb4fa638b8a6d192
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - samSetVfx: {fileID: 7364392209046003712, guid: 3fd77f9ac2b0cea47a6d5f9254e95044, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.XR;
 
-public class Chest : MonoBehaviour, IBiThuong
+public class Object_Chest : MonoBehaviour, IBiThuong
 {
     private Rigidbody2D rb => GetComponentInChildren<Rigidbody2D>();    // Lấy Rigidbody2D con (dùng để đẩy rương)
     private Animator anim => GetComponentInChildren<Animator>();    // Lấy Animator con (để mở rương)
@@ -10,12 +10,13 @@ public class Chest : MonoBehaviour, IBiThuong
     [Header("Mở rương")]
     [SerializeField] private Vector2 daylui;
 
-    public void GaySatThuong(float satthuong, Transform KeGaySatThuong)
+    public bool GaySatThuong(float satthuong,float satThuongNguyenTo,LoaiNguyenTo nguyento, Transform KeGaySatThuong)
     {
-        fx.ChayHieuUngTrungDon();
+        fx.ChayVfxTrungDon();
         anim.SetBool("chestOpen", true);
         rb.linearVelocity = daylui ;
         rb.angularVelocity = Random.Range(-200f, 200f);
 
+        return true;
     }
 }

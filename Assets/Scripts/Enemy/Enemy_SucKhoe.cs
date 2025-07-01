@@ -6,17 +6,18 @@ public class Enemy_SucKhoe : ThucThe_SucKhoe
     private Enemy enemy => GetComponent<Enemy>();
 
     // Gây sát thương cho thực thể này
-    public override void GaySatThuong(float satthuong, Transform KeGaySatThuong)
+    public override bool GaySatThuong(float satthuong,float satThuongNguyenTo,LoaiNguyenTo nguyento, Transform KeGaySatThuong)
     {
-        base.GaySatThuong(satthuong, KeGaySatThuong);
+        bool dabiDanh = base.GaySatThuong(satthuong, satThuongNguyenTo,nguyento, KeGaySatThuong);
 
-        if (DaChet)
-            return;
+        if (dabiDanh == false)
+            return false;
 
         // Nếu kẻ gây sát thương là Player thì chuyển Enemy vào trạng thái đánh nhau
         if (KeGaySatThuong.GetComponent<Player>() != null) 
             enemy.VaoTrangThaiDanhNhau(KeGaySatThuong);
 
+        return true;
       
     }
 }

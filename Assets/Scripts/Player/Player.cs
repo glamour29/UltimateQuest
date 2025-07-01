@@ -9,8 +9,6 @@ public class Player : ThucThe
 
     public PlayerInputSet input { get; private set; }
 
-    
-
     public Player_DungYen DungYen { get; private set; }
     public Player_DiChuyen DiChuyen { get; private set; }
     public Player_Nhay Nhay { get; private set; }
@@ -69,7 +67,41 @@ public class Player : ThucThe
         base.Start();
         mayTrangThai.KhoiTao(DungYen);
     }
+    protected override IEnumerator CoroutinelamChamThucThe(float tgian, float heSoLamCham)
+    {
+        float tocDoDiChuyenGoc = tocDoDiChuyen;
+        float tocDoLucNhayGoc = LucNhay;
+        float tocDoAnimGoc = anim.speed;
+        Vector2 NhayTuongGoc = lucNhayTuong;
+        Vector2 NhayDanhGoc = tocDoNhayDanh;
+        Vector2[] tocDoTanCongGoc = tocDoTanCong;
 
+        float heSoTocDo = 1 - heSoLamCham;
+
+        tocDoDiChuyen = tocDoDiChuyen * heSoTocDo;
+        LucNhay = LucNhay * heSoTocDo;
+        anim.speed = anim.speed * heSoTocDo;
+        lucNhayTuong = lucNhayTuong * heSoTocDo;
+        tocDoNhayDanh = tocDoNhayDanh * heSoTocDo;
+
+        for (int i = 0; i < tocDoTanCong.Length; i++)
+        {
+            tocDoTanCong[i] = tocDoTanCong[i] * heSoTocDo;
+        }
+
+        yield return new WaitForSeconds(tgian);
+
+        tocDoDiChuyen = tocDoDiChuyenGoc;
+        LucNhay = tocDoLucNhayGoc;
+        anim.speed = tocDoAnimGoc;
+        lucNhayTuong = NhayTuongGoc;
+        tocDoNhayDanh = NhayDanhGoc;
+
+        for (int i = 0; i < tocDoTanCong.Length; i++)
+        {
+            tocDoTanCong[i] = tocDoTanCongGoc[i];
+        }
+    }
     public override void ThucTheBiTieuDiet()
     {
         base.ThucTheBiTieuDiet();

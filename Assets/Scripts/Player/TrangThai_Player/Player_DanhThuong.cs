@@ -34,6 +34,7 @@ public class Player_DanhThuong : TrangThaiPlayer
         base.Enter();
         comboTanCongDangCho = false;// Đánh dấu là chưa bấm combo kế tiếp
         resetComboNeuCan();// Nếu qua lâu chưa đánh, reset lại combo về đầu
+        dongBoHoaTocDoDanh();
 
 
         // Nếu đang bấm phím trái/phải → đánh theo hướng di chuyển

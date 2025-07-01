@@ -12,6 +12,7 @@ public abstract class TrangThaiPlayer : TrangThaiThucThe
         anim = player.anim;
         rb = player.rb;
         input = player.input;
+        chiSo = player.chiSo;
 
     }
     public override void Update()

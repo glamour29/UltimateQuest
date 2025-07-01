@@ -6,6 +6,12 @@ public class Enemy_TanCong : TrangThaiEnemy
     {
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+        dongBoHoaTocDoDanh();
+    }
+
     public override void Update()
     {
         base.Update();

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Enemy : ThucThe
 {
@@ -34,6 +35,31 @@ public class Enemy : ThucThe
     [SerializeField] private Transform KiemTraPlayer;
     [SerializeField] private float khoangCachKiemTraPlayer = 10 ;
     public Transform player { get;private set; }
+
+    // Hàm coroutine làm chậm thực thể theo hệ số trong một khoảng thời gian nhất định
+    protected override IEnumerator CoroutinelamChamThucThe(float tgian, float heSoLamCham)
+    {
+        // Lưu lại tốc độ gốc để khôi phục sau khi hết hiệu ứng làm chậm
+        float tocDoDiChuyenGoc = tocDoDiChuyen;
+        float tocDoDanhNhauGoc = tocDoDanhNhau;
+        float tocDoAnimGoc = anim.speed;
+
+        // Tính hệ số tốc độ sau khi làm chậm (ví dụ: hệ số 0.3 => còn 70% tốc độ)
+        float heSoTocDo = 1 - heSoLamCham;
+
+        // Áp dụng làm chậm: giảm tốc độ di chuyển, đánh nhau, và hoạt ảnh
+        tocDoDiChuyen = tocDoDiChuyen * heSoTocDo;
+        tocDoDanhNhau = tocDoDanhNhau * heSoTocDo;
+        anim.speed = anim.speed * heSoTocDo;
+
+        // Chờ trong tgian (số giây làm chậm)
+        yield return new WaitForSeconds(tgian);
+
+        // Khôi phục lại các tốc độ ban đầu sau khi hết thời gian làm chậm
+        tocDoDiChuyen = tocDoDiChuyenGoc;
+        tocDoDanhNhau = tocDoDanhNhauGoc;
+        anim.speed = tocDoAnimGoc;
+    }
 
     public void BatPhanDon(bool enable) => coTheBiChoang = enable;
 

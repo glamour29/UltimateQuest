@@ -7,6 +7,7 @@ public abstract class TrangThaiThucThe
 
     protected Animator anim;
     protected Rigidbody2D rb;
+    protected ChiSo_ThucThe chiSo;
 
     protected float tgianTrangThai;
     protected bool triggerDuocGoi;
@@ -38,5 +39,16 @@ public abstract class TrangThaiThucThe
     public void AnimationTrigger()
     {
         triggerDuocGoi = true;
+    }
+
+    public virtual void capNhatThamSoAnimation ()
+    {
+
+    }
+
+    public void dongBoHoaTocDoDanh ()
+    {
+        float tocDoTanCong = chiSo.congTanCong.tocDoTanCong.layDuLieu();
+        anim.SetFloat("HeSoTocDoTanCong", tocDoTanCong);
     }
 }

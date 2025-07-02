@@ -48,7 +48,7 @@ public abstract class TrangThaiThucThe
 
     public void dongBoHoaTocDoDanh ()
     {
-        float tocDoTanCong = chiSo.congTanCong.tocDoTanCong.layDuLieu();
+        float tocDoTanCong = chiSo.congTanCong.tocDoDanh.layDuLieu();
         anim.SetFloat("HeSoTocDoTanCong", tocDoTanCong);
     }
 }

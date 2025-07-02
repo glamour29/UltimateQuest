@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class NhomChiSoChinh
 {
-    public ChiSo SucManh;
-    public ChiSo NhanhNhen;
-    public ChiSo TriTue;
-    public ChiSo TheLuc;
+    public ChiSo sucManh;
+    public ChiSo nhanhNhen;
+    public ChiSo triTue;
+    public ChiSo theLuc;
 }

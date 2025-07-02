@@ -7,10 +7,10 @@ public class LoaiChiSoPhongThu
 {
     //phong thu vat ly
     public ChiSo Giap;
-    public ChiSo NeDon;
+    public ChiSo neTranh;
 
     //nguyen to phong thu
-    public ChiSo KhangLua;
-    public ChiSo KhangBang;
-    public ChiSo KhangSet;
+    public ChiSo khangLua;
+    public ChiSo khangBang;
+    public ChiSo khangSet;
 }

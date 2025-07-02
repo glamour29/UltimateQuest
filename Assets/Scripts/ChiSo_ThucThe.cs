@@ -1,19 +1,25 @@
-﻿using UnityEngine;
+﻿using Unity.Burst.CompilerServices;
+using UnityEngine;
+using UnityEngine.Rendering;
+using static UnityEngine.Analytics.IAnalytic;
 
 public class ChiSo_ThucThe : MonoBehaviour
 {
-    public NhomTaiNguyenChiSo tainguyen;
-    public NhomChiSoChinh chiSoChinh;
+    public CaiDatChiSo caiDatChiSoMacDinh;
+
+
+    public NhomTaiNguyenChiSo nguonTaiNguyen;
     public LoaiChiSoTanCong congTanCong;
-    public LoaiChiSoPhongThu phongthu;
+    public LoaiChiSoPhongThu phongThu;
+    public NhomChiSoChinh chiSoChinh;
 
 
     public float LaySatThuongNguyenTo (out LoaiNguyenTo nguyento, float tiLePhongTo = 1)
     {
-        float satThuongLua = congTanCong.SatThuongLua.layDuLieu();
-        float satThuongBang= congTanCong.SatThuongBang.layDuLieu();
-        float satThuongSet = congTanCong.SatThuongSet.layDuLieu();
-        float bonusSatThuongNguyenTo = chiSoChinh.TriTue.layDuLieu(); //bonus elemental damage from intelligence +1 per INIT
+        float satThuongLua = congTanCong.satThuongLua.layDuLieu();
+        float satThuongBang= congTanCong.satThuongBang.layDuLieu();
+        float satThuongSet = congTanCong.satThuongSet.layDuLieu();
+        float bonusSatThuongNguyenTo = chiSoChinh.triTue.layDuLieu(); //bonus elemental damage from intelligence +1 per INIT
 
         float satThuongCaoNhat = satThuongLua;
         nguyento = LoaiNguyenTo.Lua;
@@ -49,18 +55,18 @@ public class ChiSo_ThucThe : MonoBehaviour
     public float TinhSatThuongVatLy(out bool BaoKich, float tiLePhongTo = 1 ) 
     {
         // Lấy sát thương cơ bản và cộng thêm từ sức mạnh
-        float satThuongCoBan = congTanCong.SatThuong.layDuLieu();
-        float satThuongCongThem = chiSoChinh.SucManh.layDuLieu();
+        float satThuongCoBan = congTanCong.satThuong.layDuLieu();
+        float satThuongCongThem = chiSoChinh.sucManh.layDuLieu();
         float tongSatThuongCoBan = satThuongCoBan + satThuongCongThem;
 
         // Lấy tỉ lệ bạo kích cơ bản và cộng thêm từ nhanh nhẹn (+0.3% mỗi điểm AGI)
-        float tiLeBaoKichCoBan = congTanCong.TiLeBaoKich.layDuLieu();
-        float tiLeBaoKichCongThem = chiSoChinh.NhanhNhen.layDuLieu() * 0.3f;
+        float tiLeBaoKichCoBan = congTanCong.tiLeChiMang.layDuLieu();
+        float tiLeBaoKichCongThem = chiSoChinh.nhanhNhen.layDuLieu() * 0.3f;
         float tongTiLeBaoKich = tiLeBaoKichCoBan + tiLeBaoKichCongThem;
 
         // Lấy sức mạnh bạo kích cơ bản và cộng thêm từ sức mạnh (+0.5% mỗi điểm STR)
-        float sucManhBaoKichCoBan = congTanCong.SatThuongBaoKich.layDuLieu();
-        float sucManhBaoKichCongThem = chiSoChinh.SucManh.layDuLieu() * 0.5f;
+        float sucManhBaoKichCoBan = congTanCong.sucManhChiMang.layDuLieu();
+        float sucManhBaoKichCongThem = chiSoChinh.sucManh.layDuLieu() * 0.5f;
         float tongSucManhBaoKich = (sucManhBaoKichCoBan + sucManhBaoKichCongThem) / 100;
         // e.g. 150 / 100 = 1.5 (hệ số nhân)
 
@@ -76,18 +82,18 @@ public class ChiSo_ThucThe : MonoBehaviour
     public float LayKhangNguyenTo(LoaiNguyenTo nguyento)
     {
         float khangCoBan = 0;
-        float bonusKhang = chiSoChinh.TriTue.layDuLieu() * .5f; //bonus khang tu tri tue 0.5% cho moi VIT
+        float bonusKhang = chiSoChinh.triTue.layDuLieu() * .5f; //bonus khang tu tri tue 0.5% cho moi VIT
 
             switch (nguyento)
         {
             case LoaiNguyenTo.Lua:
-                khangCoBan = phongthu.KhangLua.layDuLieu();
+                khangCoBan = phongThu.khangLua.layDuLieu();
             break;
             case LoaiNguyenTo.Bang:
-                khangCoBan = phongthu.KhangBang.layDuLieu();
+                khangCoBan = phongThu.khangBang.layDuLieu();
                 break;
             case LoaiNguyenTo.Set:
-                khangCoBan = phongthu.KhangSet.layDuLieu();
+                khangCoBan = phongThu.khangSet.layDuLieu();
                 break;
         }
         float khang = khangCoBan + bonusKhang;
@@ -98,8 +104,8 @@ public class ChiSo_ThucThe : MonoBehaviour
 
     public float layTiLeGiamSatThuongTuGiap(float GiaTriGiamSatThuong)
     {
-        float giapGoc = phongthu.Giap.layDuLieu();
-        float giapCongThem = chiSoChinh.TheLuc.layDuLieu();// Giáp cộng thêm từ thể lực: +1 mỗi điểm Thể Lực (VIT)
+        float giapGoc = phongThu.Giap.layDuLieu();
+        float giapCongThem = chiSoChinh.theLuc.layDuLieu();// Giáp cộng thêm từ thể lực: +1 mỗi điểm Thể Lực (VIT)
         float tongGiap = giapGoc + giapCongThem;
 
         float heSoGiamSatThuong =Mathf.Clamp (1 - GiaTriGiamSatThuong,0,1);
@@ -118,15 +124,15 @@ public class ChiSo_ThucThe : MonoBehaviour
 
     public float layGiaTriGiamSatThuongTuGiap()
     {
-        float GiaTriGiamSatThuongCuoiCung = congTanCong.GiaTriGiamSatThuongTuGiap.layDuLieu() / 100;
+        float GiaTriGiamSatThuongCuoiCung = congTanCong.giamGiap.layDuLieu() / 100;
         return GiaTriGiamSatThuongCuoiCung;
     }
 
     // Tính máu tối đa cuối cùng (gốc + cộng thêm từ thể lực)
     public float layHpToiDa()
     {
-        float HpToiDaGoc = tainguyen.sucKhoeToiDa.layDuLieu();
-        float CongThemHpToiDa = chiSoChinh.TheLuc.layDuLieu() * 5;
+        float HpToiDaGoc = nguonTaiNguyen.mauToiDa.layDuLieu();
+        float CongThemHpToiDa = chiSoChinh.theLuc.layDuLieu() * 5;
         float HpToiDaCuoiCung = HpToiDaGoc + CongThemHpToiDa;
 
         return HpToiDaCuoiCung;
@@ -135,8 +141,8 @@ public class ChiSo_ThucThe : MonoBehaviour
     // Tính tỉ lệ né đòn cuối cùng (gốc + cộng thêm từ nhanh nhẹn, giới hạn tối đa)
     public float LayGiaTriNeDon()
     {
-        float ChiSoNeDonGoc = phongthu.NeDon.layDuLieu();
-        float bonusChiSoNeDon = chiSoChinh.NhanhNhen.layDuLieu() * .5f; //mỗi điểm nhanh nhẹn sẽ cho bạn 0.5% né đòn
+        float ChiSoNeDonGoc = phongThu.neTranh.layDuLieu();
+        float bonusChiSoNeDon = chiSoChinh.nhanhNhen.layDuLieu() * .5f; //mỗi điểm nhanh nhẹn sẽ cho bạn 0.5% né đòn
 
         float TongChiSoNeDon = ChiSoNeDonGoc + bonusChiSoNeDon;
         float GioiHanNeDon = 80f;
@@ -145,6 +151,79 @@ public class ChiSo_ThucThe : MonoBehaviour
 
         return NeDonCuoiCung;
 
+    }
+    public ChiSo layChiSoTheoLoai(LoaiChiSo loai)
+    {
+        switch (loai)
+        {
+            case LoaiChiSo.MauToiDa: return nguonTaiNguyen.mauToiDa;
+            case LoaiChiSo.HoiMau: return nguonTaiNguyen.hoiMau;
+
+            case LoaiChiSo.SucManh: return chiSoChinh.sucManh;
+            case LoaiChiSo.NhanhNhen: return chiSoChinh.nhanhNhen;
+            case LoaiChiSo.TriTue: return chiSoChinh.triTue;
+            case LoaiChiSo.TheLuc: return chiSoChinh.theLuc;
+
+            case LoaiChiSo.TocDoDanh: return congTanCong.tocDoDanh;
+            case LoaiChiSo.SatThuong: return congTanCong.satThuong;
+            case LoaiChiSo.TiLeChiMang: return congTanCong.tiLeChiMang;
+            case LoaiChiSo.SucManhChiMang: return congTanCong.sucManhChiMang;
+            case LoaiChiSo.GiamGiap: return congTanCong.giamGiap;
+
+            case LoaiChiSo.SatThuongLua: return congTanCong.satThuongLua;
+            case LoaiChiSo.SatThuongBang: return congTanCong.satThuongBang;
+            case LoaiChiSo.SatThuongSet: return congTanCong.satThuongSet;
+
+            case LoaiChiSo.Giap: return phongThu.Giap;
+            case LoaiChiSo.NeTranh: return phongThu.neTranh;
+
+            case LoaiChiSo.KhangBang: return phongThu.khangBang;
+            case LoaiChiSo.KhangLua: return phongThu.khangLua;
+            case LoaiChiSo.KhangSet: return phongThu.khangSet;
+
+            default:
+                Debug.LogWarning($"LoaiChiSo {loai} chưa được cài đặt.");
+                return null;
+        }
+    }
+
+    [ContextMenu ("Cap Nhat Chi So Mac Dinh")]
+    public void ApDungCaiDatChiSoMacDinh()
+    {
+        if (caiDatChiSoMacDinh == null)
+        {
+            Debug.Log("no default stat setup assigned");
+            return;
+        }
+
+        nguonTaiNguyen.mauToiDa.GanGiaTriNen(caiDatChiSoMacDinh.mauToiDa);
+        nguonTaiNguyen.hoiMau.GanGiaTriNen(caiDatChiSoMacDinh.hoiMau);
+        // Chỉ số chính
+        chiSoChinh.sucManh.GanGiaTriNen(caiDatChiSoMacDinh.sucManh);
+        chiSoChinh.nhanhNhen.GanGiaTriNen(caiDatChiSoMacDinh.nhanhNhen);
+        chiSoChinh.triTue.GanGiaTriNen(caiDatChiSoMacDinh.triTue);
+        chiSoChinh.theLuc.GanGiaTriNen(caiDatChiSoMacDinh.theLuc);
+
+        // Tấn công vật lý
+        congTanCong.tocDoDanh.GanGiaTriNen(caiDatChiSoMacDinh.tocDoDanh);
+        congTanCong.satThuong.GanGiaTriNen(caiDatChiSoMacDinh.satThuong);
+        congTanCong.tiLeChiMang.GanGiaTriNen(caiDatChiSoMacDinh.tiLeChiMang);
+        congTanCong.sucManhChiMang.GanGiaTriNen(caiDatChiSoMacDinh.sucManhChiMang);
+        congTanCong.giamGiap.GanGiaTriNen(caiDatChiSoMacDinh.giamGiap);
+
+        // Tấn công nguyên tố
+        congTanCong.satThuongBang.GanGiaTriNen(caiDatChiSoMacDinh.satThuongBang);
+        congTanCong.satThuongLua.GanGiaTriNen(caiDatChiSoMacDinh.satThuongLua);
+        congTanCong.satThuongSet.GanGiaTriNen(caiDatChiSoMacDinh.satThuongSet);
+
+        // Phòng thủ vật lý
+        phongThu.Giap.GanGiaTriNen(caiDatChiSoMacDinh.giap);
+        phongThu.neTranh.GanGiaTriNen(caiDatChiSoMacDinh.neTranh);
+
+        // Phòng thủ nguyên tố
+        phongThu.khangBang.GanGiaTriNen(caiDatChiSoMacDinh.khangBang);
+        phongThu.khangLua.GanGiaTriNen(caiDatChiSoMacDinh.khangLua);
+        phongThu.khangSet.GanGiaTriNen(caiDatChiSoMacDinh.khangSet);
     }
 
 }

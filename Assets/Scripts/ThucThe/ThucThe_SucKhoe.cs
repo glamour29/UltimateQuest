@@ -80,7 +80,7 @@ public class ThucThe_SucKhoe : MonoBehaviour, IBiThuong
     {
         if (coTheHoiMauHayKhong == false)    // Nếu không được phép hồi máu thì thoát hàm
             return;
-        float luongHoiMau = chiSoThucThe.tainguyen.hoiMau.layDuLieu();    // Lấy lượng máu cần hồi từ chỉ số tài nguyên
+        float luongHoiMau = chiSoThucThe.nguonTaiNguyen.hoiMau.layDuLieu();    // Lấy lượng máu cần hồi từ chỉ số tài nguyên
 
         TangMau(luongHoiMau);// Thực hiện hồi máu
     }

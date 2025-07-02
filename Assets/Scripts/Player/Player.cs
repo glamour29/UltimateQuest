@@ -129,7 +129,6 @@ public class Player : ThucThe
     {
         input.Enable();  // Bật hệ thống điều khiển khi object được kích hoạt
 
-
         input.Player.DiChuyen.performed += ctx => dichuyenInput = ctx.ReadValue<Vector2>(); // gán giá trị từ bàn phím:Khi người chơi bấm phím điều hướng (← → ↑ ↓) hoặc di chuyển joystick, thì sự kiện performed được gọi.Unity sẽ gán giá trị Vector2 tương ứng vào dichuyenInput.
         input.Player.DiChuyen.canceled += ctx => dichuyenInput = Vector2.zero;
 

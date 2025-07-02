@@ -5,7 +5,7 @@ using System;
 
 public class NhomTaiNguyenChiSo
 {
-    public ChiSo sucKhoeToiDa;
+    public ChiSo mauToiDa;
     public ChiSo hoiMau;
 
 }

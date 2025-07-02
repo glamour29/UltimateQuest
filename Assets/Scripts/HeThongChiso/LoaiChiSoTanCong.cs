@@ -4,15 +4,15 @@ using System;
 [Serializable]
 public class LoaiChiSoTanCong
 {
-    public ChiSo tocDoTanCong;
+    public ChiSo tocDoDanh;
 
     //sat thuong vat ly
-    public ChiSo SatThuong;
-    public ChiSo SatThuongBaoKich;
-    public ChiSo TiLeBaoKich;
-    public ChiSo GiaTriGiamSatThuongTuGiap;
+    public ChiSo satThuong;
+    public ChiSo sucManhChiMang;
+    public ChiSo tiLeChiMang;
+    public ChiSo giamGiap;
 
-    public ChiSo SatThuongLua;
-    public ChiSo SatThuongBang;
-    public ChiSo SatThuongSet;
+    public ChiSo satThuongLua;
+    public ChiSo satThuongBang;
+    public ChiSo satThuongSet;
 }

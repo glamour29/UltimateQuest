@@ -33,6 +33,5 @@ public class Player_TruotTuong : TrangThaiPlayer
         else
             player.SetVelocity(player.dichuyenInput.x, rb.linearVelocity.y * player.heSoTruotTuong);// Nếu KHÔNG nhấn xuống thì làm giảm tốc độ rơi lại để tạo cảm giác bám tường (slide chậm),Vẫn cho di chuyển ngang (X), nhưng vận tốc rơi (Y) giảm còn 30%
 
-
     }
 }

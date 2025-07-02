@@ -70,14 +70,14 @@ public class ThucThe_Combat : MonoBehaviour
         if (nguyento == LoaiNguyenTo.Lua && xuLyTrangThai.coTheApDung(LoaiNguyenTo.Lua))
         {
             heSoTiLe = tiLeLua;
-            float satThuongLua = ChiSo.congTanCong.SatThuongLua.layDuLieu() * heSoTiLe ;
+            float satThuongLua = ChiSo.congTanCong.satThuongLua.layDuLieu() * heSoTiLe ;
             xuLyTrangThai.ApDungVfxDotChay(tgianKeoDaiMacDinh, satThuongLua);
         }
         
         if (nguyento == LoaiNguyenTo.Set && xuLyTrangThai.coTheApDung(LoaiNguyenTo.Set))
         {
             heSoTiLe = tiLeSamSet;
-            float satThuongSamSet = ChiSo.congTanCong.SatThuongSet.layDuLieu() * heSoTiLe;
+            float satThuongSamSet = ChiSo.congTanCong.satThuongSet.layDuLieu() * heSoTiLe;
             xuLyTrangThai.ApDungVfxSamSet(tgianKeoDaiMacDinh, satThuongSamSet, tichLuyNangLuongDienGiat);
         }
     }
